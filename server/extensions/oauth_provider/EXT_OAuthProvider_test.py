@@ -33,7 +33,7 @@ from zephyrex.extensions.oauth_provider.BLL_OAuthProvider import (
 from zephyrex.extensions.oauth_provider.EXT_OAuthProvider import (
     EXT_OAuthProvider,
 )
-from zephyrex.lib.Pydantic2FastAPI import RouteType
+from zephyrex.pydantic2.fastapi import RouteType
 
 
 class TestCanonicalWiring:

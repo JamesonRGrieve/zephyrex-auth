@@ -27,7 +27,7 @@ from pydantic import BaseModel, ConfigDict, Field
 from zephyrex.lib.CustomRoute import custom_route
 from zephyrex.lib.Environment import env
 from zephyrex.lib.InboundSecurity import DEFAULT_AUTH_RATE_LIMIT, rate_limit
-from zephyrex.lib.Pydantic2FastAPI import AuthType, RouterMixin
+from zephyrex.pydantic2.fastapi import AuthType, RouterMixin
 from zephyrex.lib.ReplayCache import get_replay_cache
 from zephyrex.lib.SecretEncryption import (
     decrypt_secret,
