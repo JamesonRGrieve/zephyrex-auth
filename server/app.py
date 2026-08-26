@@ -30,7 +30,8 @@ EXTENSIONS = (
     "x509_provider,x509_consumer,"
     "proxy_auth_provider,proxy_auth_consumer,"
     "forward_auth_provider,forward_auth_consumer,"
-    "auth_ldap"
+    "auth_ldap,"
+    "auth_oauth2_server"
 )
 
 if __name__ == "__main__":
