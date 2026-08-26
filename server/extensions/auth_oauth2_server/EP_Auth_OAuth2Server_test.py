@@ -47,12 +47,21 @@ def oauth_server():
     prepare_test_registry()
     refresh_settings()
     worker = os.environ.get("PYTEST_XDIST_WORKER", "main")
-    from conftest import CORE_COMPANION_EXTENSIONS
     from zephyrex.app import instance
 
-    # Load the core-companion extensions too (auth_session owns `sessions`, which
-    # JWT auth needs) alongside the extension under test.
-    exts = ",".join(["auth_oauth2_server", *CORE_COMPANION_EXTENSIONS])
+    # Load the framework core-companion extensions too (auth_session owns the
+    # `sessions` table JWT auth queries). Hardcoded rather than imported from a
+    # test conftest so the test is portable across the framework and consumer
+    # repos.
+    companions = (
+        "metadata",
+        "auth_lockout",
+        "auth_recovery_questions",
+        "auth_invitations",
+        "auth_session",
+        "acl_rbac",
+    )
+    exts = ",".join(["auth_oauth2_server", *companions])
     app = instance(db_prefix=f"test.oauth2srv.{worker}", extensions=exts)
     return TestClient(app)
 
