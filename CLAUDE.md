@@ -6,6 +6,8 @@ Identity-provider extensions built on the Zephyrex framework.
 
 ```
 server/     Python backend — IdP protocol extensions for the Zephyrex server
+client/     Client extensions (`zephyrex` ZephyrexClientExtension), one per server
+            extension, name-for-name; apps add the ones they enable to their config
 ```
 
 ## Server

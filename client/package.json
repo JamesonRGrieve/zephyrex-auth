@@ -1,0 +1,12 @@
+{
+  "name": "zephyrex-auth-client",
+  "version": "0.0.1-alpha.1",
+  "private": true,
+  "description": "Client extensions for the Zephyrex identity-provider server extensions",
+  "license": "AGPL-3.0-or-later",
+  "type": "module",
+  "main": "src/extensions.ts",
+  "peerDependencies": {
+    "zephyrex": "^0.0.1-alpha.1"
+  }
+}
