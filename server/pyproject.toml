@@ -5,38 +5,19 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "zephyrex-auth"
 version = "0.1.0"
-description = "Identity-provider extensions for Zephyrex Framework Server — OAuth2/OIDC, SAML, LDAP, RADIUS, SCIM, WebAuthn, Kerberos, x509, proxy/forward auth (provider + consumer)"
+description = "Identity-provider server on the Zephyrex framework — OAuth2/OIDC, SAML, LDAP, RADIUS, SCIM, WebAuthn, Kerberos, x509, proxy/forward auth (provider + consumer)"
 requires-python = ">=3.11"
 license = { text = "AGPL-3.0-or-later" }
+# The protocol extensions ship in the framework (its public 0.0.x releases
+# on PyPI); this project only boots them.
 dependencies = [
-    "zephyrex @ git+https://github.com/JamesonRGrieve/ServerFramework.git",
-    "requests>=2.31.0",
-    "ldap3>=2.9.1",
-    "pysaml2>=7.0.0",
-    "pyrad>=2.4",
-    "fido2>=1.1.0",
-    "PyJWT>=2.8.0",
+    "zephyrex[forward-auth-consumer,forward-auth-provider,kerberos-provider,ldap-consumer,ldap-provider,oauth-consumer,oauth-provider,proxy-auth-consumer,proxy-auth-provider,radius-consumer,radius-provider,saml-consumer,saml-provider,scim-consumer,scim-provider,webauthn-consumer,webauthn-provider,x509-consumer,x509-provider]~=0.0.1",
 ]
 
 [project.optional-dependencies]
 # Kerberos/GSSAPI needs system libs (libkrb5-dev / MIT or Heimdal), so it is
 # opt-in rather than a hard dependency of the base install.
-kerberos = [
-    "gssapi>=1.8.0",
-]
-dev = [
-    "pytest",
-    "pytest-asyncio",
-    "pytest-xdist",
-]
+kerberos = ["zephyrex[kerberos-consumer]~=0.0.1"]
 
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["extensions*"]
-exclude = ["*__pycache__*", "*_test.py"]
-namespaces = true
-
-[tool.pytest.ini_options]
-asyncio_mode = "auto"
-asyncio_default_fixture_loop_scope = "function"
-testpaths = ["extensions"]
+[tool.setuptools]
+py-modules = ["app"]
